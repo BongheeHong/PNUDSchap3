@@ -40,7 +40,10 @@ void test2() {
 		cout << "not empty" << endl;
 	}
 
+	int arr[] = {2, 1, 4, 10, 18};
+	int index = 0;
 	while (!s.IsEmpty()) {
+		assert(arr[index++] == s.Front());
 		cout << s.Front() << endl;
 		s.Pop();
 	}

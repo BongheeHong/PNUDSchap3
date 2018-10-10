@@ -1,12 +1,38 @@
-﻿#include "Queue.h"
+﻿#pragma warning(disable : 4996)
 
-void main()
-{
+#include "Queue.h"
+#include <assert.h>
+
+void test1() {
+	Queue<int> s(3);
+	s.Push(2);
+	s.Push(4);//2, 4
+	s.Pop();//4
+	assert(s.Front() == 4);
+	s.Push(2);//4, 2
+	s.Push(1);
+	s.Push(4);
+	s.Push(10);
+	s.Push(18);//4, 2, 1, 4, 10, 18
+
+	s.Pop();
+	assert(s.Front() == 2);//2, 1, 4, 10, 18
+	s.Pop();
+	s.Pop();
+	s.Pop(); //
+	assert(s.Front() == 10);//10, 18
+	s.Pop();
+	s.Pop();
+	assert(s.IsEmpty() == true);
+}
+
+void test2() {
 	Queue<int> s(3);
 	s.Push(2);
 	s.Push(1);
 	s.Push(4);
-	//s.Push(10); //구현시에 doubling 동작 가능한지 테스트
+	s.Push(10);
+	s.Push(18);
 	if (s.IsEmpty()) {
 		cout << "empty" << endl;
 	}
@@ -18,7 +44,12 @@ void main()
 		cout << s.Front() << endl;
 		s.Pop();
 	}
-	//cout << s << endl;//가능하도록 필요한 함수를 추가 구현한다
+}
+
+void main()
+{
+	test1();
+	test2();
 	system("pause");
 }
 

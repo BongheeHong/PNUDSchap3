@@ -1,6 +1,5 @@
 #pragma once
 
-
 // program 3.10~12:
 
 #include <iostream>
@@ -53,24 +52,21 @@ inline T& Queue<T>::Rear()
 template <class T>
 void Queue<T>::Push(T const & x)
 {
-	if ((rear + 1) % capacity == front)
+	if ((rear+1) % capacity == front || (front == -1 && rear == capacity-1))
 	{
 		T* newQueue = new T[2 * capacity];
 		// allocate an array with twice the capacity
 		int start = (front + 1) % capacity;
-		if (start < 2)
-			//copy(queue + start, queue + start + capacity - 1, newQueue);
-			memcpy(newQueue, queue + start, start + capacity - 1);
-		else
-		{
-			//copy(queue + start, queue + capacity, newQueue);
-			//copy(queue, queue + rear + 1, newQueue + capacity - start);
-			memcpy(newQueue, queue + start, capacity);
-			memcpy(newQueue + capacity - start, queue, rear + 1);
+		int index = 0;
+		int size = abs(start - rear) + 1;
+		while (size > 0) {
+			newQueue[index++] = queue[start];
+			start = (start + 1) % capacity;
+			size--;
 		}
 		// switch to new Queue
-		front = 2 * capacity - 1;
-		rear = capacity - 2;
+		front = -1;
+		rear = index - 1;
 		capacity *= 2;
 		delete[] queue;
 		queue = newQueue;

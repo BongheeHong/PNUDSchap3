@@ -10,6 +10,8 @@ int main() {
 	s.Push(6);
 	s.Push(1);
 	s.Push(2);
+	s.Push(10);
+	s.Push(17);
 
 	cout << "is empty: ";
 	if (s.IsEmpty()) {

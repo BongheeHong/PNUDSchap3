@@ -7,6 +7,8 @@ int main() {
 	b.Push(5);
 	b.Push(1);
 	b.Push(6);
+	b.Push(10);
+	b.Push(19);
 
 	if (b.IsEmpty()) {
 		cout << "empty" << endl;

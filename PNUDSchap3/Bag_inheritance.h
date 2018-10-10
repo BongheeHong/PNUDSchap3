@@ -43,7 +43,7 @@ void ChangeSizeID(int*& a, const int oldSize, const int newSize)
 	int number = oldSize;
 	if (oldSize > newSize) number = newSize;
 	//copy(a, a + number, temp);
-	memcpy(temp, a, number);
+	memcpy(temp, a, sizeof(int)* number);
 	delete[] a;
 	a = temp;
 }

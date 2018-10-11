@@ -1,10 +1,10 @@
-#pragma once
-
-//3.6.2 postfix notation
+﻿//3.6.2 postfix notation
 //3.18~19
 #include <iostream>
 #include <memory>
+#include <assert.h>
 
+typedef char* Expression;
 using namespace std;
 
 
@@ -12,7 +12,7 @@ template <class T>
 class Stack
 {
 public:
-	Stack(int stackCapacity = 10);
+	Stack(int stackCapacity = 3);
 	bool IsEmpty() const;
 	T& Top() const;
 	void Push(const T& item);
@@ -22,9 +22,6 @@ private:
 	T * stack;
 	int top;
 	int capacity;
-
-
-
 };
 
 template <class T>
@@ -75,8 +72,9 @@ void ChangeSizeID(T*& a, const int oldSize, const int newSize)
 	int number = oldSize;
 	if (oldSize > newSize) number = newSize;
 	//copy(a, a + number, temp);
-	memcpy(temp, a, number);
+	memcpy(temp, a, sizeof(T)*number);
 	delete[] a;
 	a = temp;
 }
+
 
